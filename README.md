@@ -47,7 +47,7 @@ chmod +x check_16kb_compatibility.sh
 ### System-wide Installation
 ```bash
 # Copy to system binary directory
-sudo cp check_16kb_compatibility.sh /usr/local/bin/check-16kb
+sudo cp check_16kb_compatibility.sh
 
 # Make it executable
 sudo chmod +x /usr/local/bin/check-16kb
@@ -64,27 +64,6 @@ check-16kb
 # Auto-detect and check all artifacts
 ./check_16kb_compatibility.sh
 
-# Check specific file
-./check_16kb_compatibility.sh app-release.aab
-
-# Verbose output for debugging
-./check_16kb_compatibility.sh -v
-
-# Quiet mode (errors only)
-./check_16kb_compatibility.sh -q
-```
-
-### Advanced Usage
-
-```bash
-# Generate JSON report
-./check_16kb_compatibility.sh -j -o report.json
-
-# Check specific APK with verbose output
-./check_16kb_compatibility.sh -v build/app/outputs/apk/release/app-release.apk
-
-# Pipe to other tools
-./check_16kb_compatibility.sh -j | jq '.is_compatible'
 ```
 
 ### CI/CD Integration
@@ -227,7 +206,7 @@ sudo apt-get install openjdk-17-jdk
 
 Enable verbose output to see detailed execution:
 ```bash
-./check_16kb_compatibility.sh -v app-release.aab
+./check_16kb_compatibility.sh
 ```
 
 ## 🔒 Security
@@ -262,7 +241,7 @@ Enable verbose output to see detailed execution:
 
 1. **Integrate into build pipeline**
    ```yaml
-   - run: ./scripts/check_16kb_compatibility.sh -j
+   - run: ./scripts/check_16kb_compatibility.sh
    - run: test $(jq -r '.is_compatible' report.json) = "true"
    ```
 
